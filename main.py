@@ -3,9 +3,49 @@ import datetime
 from array import *
 
 
+def LeftDiagonalCheck(*arg, column, row):
+    playerChar = args[column][row]
+    for i in range(3):
+        if (column - i - 1) > 0 or (row + i + 1) < 6:
+            return 0
+        if arg[column - i][row + i] != arg[column - i - 1][row + i + 1]:
+            return 0
+    print(f"{playerChar} is the winner of the game"!)
+    return 1
+def RightDiagonalCheck(*arg, column, row):
+    playerChar = args[column][row]
+        for i in range(3):
+            if (column + i + 1) > 6 or (row + i + 1) > 6:
+                return 0
+            if arg[column + i][row + i] != arg[column + i + 1][row + i + 1]:
+                return 0
+    print(f"{playerChar} is the winner of the game"!)
+    return 1
+def HorizontalCheck(*arg, column, row):
+    playerChar = args[column][row]
+    for i in range(3):
+        if column > 3:
+            return 0
+        if arg[column + x][y] != arg[column + x + 1][y]:
+            return 0
+    print(f"{playerChar} is the winner of the game"!)
+    return 1
+
+def VerticalCheck(*arg, column, row):
+    playerChar = args[column][row]
+    for i in range(3):
+        if (row + x -1) > 0 or (column - x + 1) < 0:
+            return 0
+        if arg[column + x][y] != arg[column + x + 1][y]:
+            return 0
+    print(f"{playerChar} is the winner of the game"!)
+    return 1
+
 def GameOver(choice):
-    
-        return 0
+    if HorizontalCheck(*arg, column, row) or VerticalCheck(*arg, column, row) or
+        RightDiagonalCheck(*arg, column, row) or LeftDiagonalCheck(*arg, column, row):
+        return 1
+    return 0
 def PlacePiece(choice, *args):
     i = choice
     for x in range(8):
@@ -16,7 +56,7 @@ def PlacePiece(choice, *args):
             while (i == choice):
                 print("Column is full please choose a differnt number")
                 choice = int(input())-1
-            PlacePiece(choice, *args)   
+            PlacePiece(choice, *args)
     return args
 
 def comTurn(*args):
@@ -34,13 +74,15 @@ def PrintBoard(*args):
     print("| 1   2   3   4   5   6   7 |")
     for x in range(7):
         print("+---+---+---+---+---+---+---+")
-        print(f"| {args[0][x]} | {args[1][x]} | {args[2][x]} | {args[3][x]} | {args[4][x]} | {args[5][x]} | {args[6][x]} |")
+        print(f"| {args[0][x]} | {args[1][x]} | {args[2][x]} | {args[3][x]} |
+        {args[4][x]} | {args[5][x]} | {args[6][x]} |")
     print("+---+---+---+---+---+---+---+")
     return args
 
-Board = [[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],
-         [' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],
-         [' ', ' ',' ',' ',' ',' ',' ']]
+Board = [[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],
+[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],
+[' ', ' ',' ',' ',' ',' ',' '],[' ', ' ',' ',' ',' ',' ',' '],
+[' ', ' ',' ',' ',' ',' ',' ']]
 
 PrintBoard(*Board)
 userPiece = 'x'
@@ -54,7 +96,7 @@ comTurn(*Board)
 PrintBoard(*Board)
 
 
-while not (GameOver(userChoice)):
+while not (GameOver(*Board)):
     print("Please enter new number 1 - 7 and 8 to exit")
     userChoice = int(input())
     while userChoice < 1 or userChoice > 7:
